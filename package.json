@@ -1,6 +1,6 @@
 {
 	"name": "@anweb/chunker",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Split markdown or plain text into token-bounded chunks along headings, with source offsets, heading paths and optional overlap",
 	"license": "MIT",
 	"homepage": "https://github.com/ANLTD/chunker#readme",

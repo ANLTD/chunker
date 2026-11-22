@@ -42,8 +42,15 @@ describe('splitSections', () => {
 
 	it('ignores headings inside front matter', () => {
 		expect(paths('---\ntitle: x\n# comment\n---\n\nBody\n# A\na')).toEqual([[], ['A']])
-		expect(paths('---\r\n# comment\r\n... \r\n# A\r\na')).toEqual([[], ['A']])
+		expect(paths('---\r\ntitle: x\r\n# comment\r\n... \r\n# A\r\na')).toEqual([[], ['A']])
+		expect(paths('---\ntitle: "x"\ntags:\n  - a\n- b\nкатегория: заметки\n\n# comment\n---\n# A\na')).toEqual([[], ['A']])
 		expect(paths('text\n\n---\n# A\n---\na')).toEqual([[], ['A']])
+	})
+
+	it('reads a block between --- dividers that is not YAML as markdown', () => {
+		expect(paths('---\n\n# A\n\ntext\n\n---\n\n# B\n\nb')).toEqual([[], ['A'], ['B']])
+		expect(paths('---\nNote: call back\nand then more text\n\n---\n\n# A\na')).toEqual([[], ['A']])
+		expect(paths('---\n# A\n---\n\n# B\nb')).toEqual([[], ['A'], ['B']])
 	})
 
 	it('cleans heading titles', () => {

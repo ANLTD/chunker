@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+A block between `---` lines at the top is YAML front matter only when it reads as YAML: it starts with a `key: value` line, and every unindented line is a key, a list item or a comment. Before, any text that opened with a `---` divider was taken for front matter up to the next `---`, and its headings were lost.
+
 ## 0.2.0
 
 Requires Node.js 24 or later. No changes to how text is cut.
